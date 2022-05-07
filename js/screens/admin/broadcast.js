@@ -96,11 +96,13 @@ const addBroadcast = () => {
             <h3 class="text-xl text-red-500">Errors</h3>
 
             <ul class="ml-5 list-disc">
-              ${Object.values(error.response.data).map(
-                (error) => `
+              ${Object.values(error.response.data)
+                .map(
+                  (error) => `
                 <li>${error}</li>
               `
-              )}
+                )
+                .join(' ')}
             </ul>
           </div>
         `;
