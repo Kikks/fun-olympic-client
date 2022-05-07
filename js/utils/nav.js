@@ -49,7 +49,7 @@ const toggleMenu = () => {
 
 const logout = (role) => {
   if (role === 'admin') {
-    window.location.href = '/admin/login';
+    window.location.href = '/admin/login/';
     localStorage.removeItem('token');
   } else {
     axios
@@ -65,7 +65,7 @@ const logout = (role) => {
       .then(() => {
         localStorage.removeItem('token');
 
-        window.location.href = '/login';
+        window.location.href = '/login/';
       })
       .catch((error) => {
         console.log(error?.response?.data);

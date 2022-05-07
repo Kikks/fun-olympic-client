@@ -14,7 +14,7 @@ const login = () => {
     .then(({ data }) => {
       localStorage.setItem('token', data.token);
       document.querySelector('#submit').disabled = false;
-      window.location.href = '/login';
+      window.location.href = '/login/';
     })
     .catch((error) => {
       document.querySelector('#submit').disabled = false;
