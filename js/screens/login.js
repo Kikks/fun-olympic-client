@@ -13,7 +13,7 @@ const login = () => {
     .then(({ data }) => {
       localStorage.setItem('token', data.token);
       document.querySelector('#submit').disabled = false;
-      window.location.href = '/index.html';
+      window.location.href = '/';
     })
     .catch((error) => {
       document.querySelector('#submit').disabled = false;

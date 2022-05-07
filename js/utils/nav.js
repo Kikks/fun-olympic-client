@@ -1,8 +1,5 @@
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
-import { backendURL } from '../utils/constants';
-
-const user = jwtDecode(localStorage.getItem('token'));
+import { backendURL } from './constants';
 
 let menuOpen = false;
 
@@ -52,7 +49,7 @@ const toggleMenu = () => {
 
 const logout = (role) => {
   if (role === 'admin') {
-    window.location.href = '/admin/login.html';
+    window.location.href = '/admin/login';
     localStorage.removeItem('token');
   } else {
     axios
@@ -68,7 +65,7 @@ const logout = (role) => {
       .then(() => {
         localStorage.removeItem('token');
 
-        window.location.href = '/login.html';
+        window.location.href = '/login';
       })
       .catch((error) => {
         console.log(error?.response?.data);

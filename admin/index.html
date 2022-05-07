@@ -48,19 +48,19 @@
               <div class="flex space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a
-                  href="/admin/index.html"
+                  href="/admin"
                   class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
                   aria-current="page"
                   >Home</a
                 >
                 <a
-                  href="./users.html"
+                  href="/admin/users"
                   class="rounded-md px-3 py-2 text-sm font-medium text-white"
                   aria-current="page"
                   >Users</a
                 >
                 <a
-                  href="./broadcasts.html"
+                  href="/admin/broadcasts"
                   class="rounded-md px-3 py-2 text-sm font-medium text-white"
                   aria-current="page"
                   >Broadcasts</a
@@ -86,20 +86,20 @@
         <div class="space-y-1 px-2 pt-2 pb-3">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <a
-            href="/admin/index.html"
+            href="/admin"
             class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
             aria-current="page"
             >Home</a
           >
 
           <a
-            href="/admin/users.html"
+            href="/admin/users"
             class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >Users</a
           >
 
           <a
-            href="/admin/broadcasts.html"
+            href="/admin/broadcasts"
             class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >Broadcasts</a
           >
@@ -126,19 +126,18 @@
           class="flex flex-col items-center justify-center gap-3 rounded-md p-10 text-center shadow-md md:p-16"
         >
           <h2 class="">No. of Logged In Users Today</h2>
-          <h1
+          <h1ß
             class="text-2xl font-bold md:text-3xl lg:text-4xl"
             id="no-of-users"
           >
             0
-          </h1>
+          </h1ß>
         </div>
       </div>
     </main>
 
-    <script type="module" src="../js/components/nav.js"></script>
-    <script type="module" src="../js/components/time.js"></script>
-    <script type="module" src="../js/components/admin-auth.js"></script>
-    <script type="module" src="../js/screens/admin/index.js"></script>
+    <script type="module" src="/js/screens/admin/index.js"></script>
+    <script type="module" src="/js/utils/nav.js"></script>
+    <script type="module" src="/js/utils/admin-auth.js"></script>
   </body>
 </html>

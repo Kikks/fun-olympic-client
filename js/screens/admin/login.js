@@ -11,7 +11,7 @@ const login = () => {
     .then(({ data }) => {
       localStorage.setItem('token', data.token);
       document.querySelector('#submit').disabled = false;
-      window.location.href = '/admin/index.html';
+      window.location.href = '/admin';
     })
     .catch((error) => {
       document.querySelector('#submit').disabled = false;

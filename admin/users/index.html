@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../../style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FunOlympic Games - Admin Home</title>
   </head>
@@ -48,20 +48,20 @@
               <div class="flex space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a
-                  href="/admin/index.html"
+                  href="/admin"
                   class="rounded-md px-3 py-2 text-sm font-medium text-white"
                   aria-current="page"
                   >Home</a
                 >
                 <a
-                  href="./users.html"
-                  class="rounded-md px-3 py-2 text-sm font-medium text-white"
+                  href="/admin/users"
+                  class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
                   aria-current="page"
                   >Users</a
                 >
                 <a
-                  href="./broadcasts.html"
-                  class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                  href="/admin/broadcasts"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-white"
                   aria-current="page"
                   >Broadcasts</a
                 >
@@ -86,21 +86,21 @@
         <div class="space-y-1 px-2 pt-2 pb-3">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <a
-            href="/admin/index.html"
+            href="/admin"
             class="block rounded-md px-3 py-2 text-base font-medium text-white"
             aria-current="page"
             >Home</a
           >
 
           <a
-            href="/admin/users.html"
-            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            href="/admin/users"
+            class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >Users</a
           >
 
           <a
-            href="/admin/broadcasts.html"
-            class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+            href="/admin/broadcasts"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
             >Broadcasts</a
           >
         </div>
@@ -108,27 +108,25 @@
     </nav>
 
     <main class="flex flex-col gap-10 p-5 md:p-10 lg:p-16">
-      <div class="flex items-center justify-between">
-        <h2 class="text-2xl font-bold lg:text-3xl">Broadcasts</h2>
-
-        <button
-          type="button"
-          onclick="openModal()"
-          class="flex items-center justify-center rounded-md bg-green-500 py-2 px-10 text-xs text-white md:text-sm"
-        >
-          Add
-        </button>
-      </div>
+      <h2 class="text-2xl font-bold lg:text-3xl">Users</h2>
 
       <div class="w-full overflow-x-auto">
-        <table class="w-full">
+        <table class="text-sitrep-black w-full overflow-x-auto">
           <thead>
             <tr class="font-semi-bold font-gSemibold mb-4 bg-gray-300 text-sm">
-              <td class="w-[50vw] p-4 font-bold md:w-[60vw] lg:w-[70vw]">
+              <td class="w-[20vw] min-w-[200px] p-4 font-bold md:w-[25vw]">
                 Name
               </td>
-              <td class="p-4 font-bold">
-                <div class="flex w-full justify-center">Action</div>
+              <td class="w-[20vw] min-w-[200px] p-4 font-bold md:w-[25vw]">
+                Last Login
+              </td>
+              <td class="w-[20vw] min-w-[200px] p-4 font-bold md:w-[25vw]">
+                Last Logout
+              </td>
+              <td class="w-[20vw] min-w-[200px] p-4 font-bold md:w-[25vw]">
+                <div class="flex w-full justify-center">
+                  <span> Actions </span>
+                </div>
               </td>
             </tr>
           </thead>
@@ -142,7 +140,7 @@
         class="w-[90vw] max-w-[500px] rounded-md bg-white p-3 shadow-md sm:overflow-hidden sm:rounded-md md:p-5 lg:p-10"
       >
         <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-          <h3 class="text-xl font-bold md:text-2xl">Add Broadcast</h3>
+          <h3 class="text-xl font-bold md:text-2xl">Reset User Password</h3>
         </div>
 
         <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
@@ -152,15 +150,15 @@
                 for="company-website"
                 class="block text-sm font-medium text-gray-700"
               >
-                Broadcast
+                Password
               </label>
               <div class="mt-1 flex rounded-md shadow-sm">
                 <input
-                  type="text"
-                  name="broadcast"
-                  id="broadcast"
+                  type="password"
+                  name="password"
+                  id="password"
                   class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Broadcast Name"
+                  placeholder="*****"
                 />
               </div>
             </div>
@@ -176,11 +174,11 @@
           </button>
 
           <button
-            onclick="addBroadcast()"
-            id="add"
+            onclick="resetPassword()"
+            id="reset"
             class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
           >
-            Add
+            Reset
           </button>
         </div>
 
@@ -188,9 +186,9 @@
       </div>
     </div>
 
-    <script type="module" src="../js/components/nav.js"></script>
+    <script type="module" src="/js/utils/nav.js"></script>
     <script type="module" src="/main.js"></script>
-    <script type="module" src="../js/components/admin-auth.js"></script>
-    <script type="module" src="../js/screens/admin/broadcast.js"></script>
+    <script type="module" src="/js/utils/admin-auth.js"></script>
+    <script type="module" src="/js/screens/admin/user.js"></script>
   </body>
 </html>

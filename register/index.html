@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FunOlympic Games - Login</title>
+    <title>FunOlympic Games - Register</title>
   </head>
   <body>
     <nav class="bg-gray-700">
@@ -28,17 +28,54 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
           <div class="md:col-span-1">
             <div class="px-4 sm:px-0">
-              <h3 class="text-lg font-medium leading-6 text-gray-900">Login</h3>
+              <h3 class="text-lg font-medium leading-6 text-gray-900">
+                Register
+              </h3>
               <p class="mt-1 text-sm text-gray-600">
-                Login to see the available Broadcasts.
+                Create an account to see the broadcasts on FunOlympic.
               </p>
             </div>
           </div>
           <div class="mt-5 md:col-span-2 md:mt-0">
-            <div>
+            <div action="#" method="POST">
               <div class="shadow sm:overflow-hidden sm:rounded-md">
                 <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                   <div class="grid grid-cols-1 gap-6">
+                    <div class="col-span-1 sm:col-span-1">
+                      <label
+                        for="company-website"
+                        class="block text-sm font-medium text-gray-700"
+                      >
+                        First Name
+                      </label>
+                      <div class="mt-1 flex rounded-md shadow-sm">
+                        <input
+                          type="text"
+                          name="firstName"
+                          id="firstName"
+                          class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          placeholder="Your First Name"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-span-1 sm:col-span-1">
+                      <label
+                        for="company-website"
+                        class="block text-sm font-medium text-gray-700"
+                      >
+                        Last Name
+                      </label>
+                      <div class="mt-1 flex rounded-md shadow-sm">
+                        <input
+                          type="text"
+                          name="lastName"
+                          id="lastName"
+                          class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          placeholder="Your Last Name"
+                        />
+                      </div>
+                    </div>
+
                     <div class="col-span-1 sm:col-span-1">
                       <label
                         for="company-website"
@@ -74,6 +111,24 @@
                         />
                       </div>
                     </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                      <label
+                        for="company-website"
+                        class="block text-sm font-medium text-gray-700"
+                      >
+                        Confirm Password
+                      </label>
+                      <div class="mt-1 flex rounded-md shadow-sm">
+                        <input
+                          type="password"
+                          name="confirmPassword"
+                          id="confirmPassword"
+                          class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          placeholder="*****"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
@@ -82,7 +137,7 @@
                     id="submit"
                     class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
                   >
-                    Login
+                    Register
                   </button>
                 </div>
               </div>
@@ -95,7 +150,7 @@
     </main>
 
     <div id="app"></div>
-    <script type="module" src="/js/screens/login.js"></script>
+    <script type="module" src="/js/screens/register.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
