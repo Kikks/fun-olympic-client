@@ -39,17 +39,20 @@ const renderTableBody = (data) => {
               <td class="w-[20vw] min-w-[200px] p-4 md:w-[25vw]">
                 ${user.firstName || ''} ${user.lastName || ''}
               </td>
-              <td class="w-[20vw] min-w-[200px] p-4 md:w-[25vw]">
+               <td class="w-[20vw] min-w-[200px] p-4 md:w-[25vw]">
+                ${user.email || ''}
+              </td>
+              <td class="w-[10vw] min-w-[170px] p-4 md:w-[15vw]">
                 ${user?.broadcasts ? user.broadcasts.length : 0}
               </td>
-              <td class="w-[20vw] min-w-[200px] p-4 md:w-[25vw]">
+              <td class="w-[20vw] min-w-[170px] p-4 md:w-[25vw]">
                 ${
                   user?.lastLogin
                     ? moment(user?.lastLogin).format('DD-MM-YYY, hh:mmA')
                     : '-'
                 }
               </td>
-              <td class="w-[20vw] min-w-[250px] p-4 md:w-[25vw]">
+              <td class="w-[20vw] min-w-[170px] p-4 md:w-[25vw]">
                 ${
                   user?.lastLogout
                     ? moment(user?.lastLogout).format('DD-MM-YYY, hh:mmA')
@@ -57,7 +60,7 @@ const renderTableBody = (data) => {
                 }
               </td>
               <td class="px-4 py-1">
-                <div class="flex w-full justify-center gap-2">
+                <div class="flex w-full justify-center gap-2 min-w-[250px]">
                   <button
                     onclick="setUser('${user._id}')"
                     type="button"
