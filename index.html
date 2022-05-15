@@ -5,6 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FunOlympic Games - Home</title>
   </head>
@@ -46,19 +50,63 @@
     </nav>
 
     <main class="flex flex-col gap-10 p-5 md:p-10 lg:p-16">
-      <h2 class="text-2xl font-bold lg:text-3xl">Broadcasts</h2>
+      <div class="flex flex-wrap items-center justify-between gap-5">
+        <h2 class="text-2xl font-bold lg:text-3xl">Broadcasts</h2>
 
-      <table class="text-sitrep-black w-full">
-        <thead>
-          <tr class="font-semi-bold font-gSemibold mb-4 bg-gray-300 text-sm">
-            <td class="w-[50vw] p-4 font-bold md:w-[60vw] lg:w-[70vw]">Name</td>
-            <td class="p-4 font-bold">
-              <div class="flex w-full justify-center">Viewing List</div>
-            </td>
-          </tr>
-        </thead>
-        <tbody id="tbody" class="font-gRegular text-sm"></tbody>
-      </table>
+        <div class="flex items-center gap-2">
+          <div class="grid">
+            <span class="text-xs font-bold">Category</span>
+            <select
+              name="category"
+              id="categoryFilter"
+              class="min-w-[100px] rounded-md p-2 md:min-w-[150px]"
+            >
+              <option value="">All</option>
+            </select>
+          </div>
+
+          <div class="grid">
+            <span class="text-xs font-bold">Viewing List</span>
+            <select
+              name="viewingList"
+              id="viewingListFilter"
+              class="min-w-[100px] rounded-md p-2 md:min-w-[150px]"
+            >
+              <option value="">All</option>
+              <option value="viewing">Viewing</option>
+              <option value="not-viewing">Not Viewing</option>
+            </select>
+          </div>
+
+          <button
+            id="filter"
+            type="button"
+            onclick="filterBroadcasts()"
+            class="flex items-center justify-center self-end rounded-md bg-indigo-500 py-2 px-7 text-white md:py-3 md:text-sm"
+          >
+            Filter
+          </button>
+        </div>
+      </div>
+
+      <div class="w-full overflow-x-auto">
+        <table class="text-sitrep-black w-full overflow-x-auto">
+          <thead>
+            <tr class="font-semi-bold font-gSemibold mb-4 bg-gray-300 text-sm">
+              <td class="min-w-[250px] p-4 md:w-[25vw]">Name</td>
+              <td class="min-w-[250px] p-4 md:w-[25vw]">Airing Time</td>
+              <td class="min-w-[150px] p-4 md:w-[25vw]">Category</td>
+              <td class="min-w-[150px] p-4 md:w-[25vw]">
+                <div class="flex w-full justify-center">Link</div>
+              </td>
+              <td class="min-w-[150px] p-4 md:w-[25vw]">
+                <div class="flex w-full justify-center">Viewing List</div>
+              </td>
+            </tr>
+          </thead>
+          <tbody id="tbody" class="font-gRegular text-sm"></tbody>
+        </table>
+      </div>
     </main>
 
     <!-- /** * PurgeCSS: * bg-red-500 * bg-red-200 * bg-black/20 fixed top-0 left-0 flex h-screen w-screen items-center justify-center gap-2 */ -->

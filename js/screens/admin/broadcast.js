@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { backendURL } from '../../utils/constants';
+import moment from 'moment';
+
+let categories = [];
 
 const openModal = (broadcastId) => {
   document.querySelector('#modal').className =
@@ -8,6 +11,12 @@ const openModal = (broadcastId) => {
 
 const closeModal = () => {
   document.querySelector('#modal').className = 'hidden';
+  document.querySelector('#new-category-container').classList.remove('block');
+  document.querySelector('#new-category-container').classList.add('hidden');
+
+  document.querySelector('#category').value = categories[0]
+    ? categories[0]._id
+    : '';
 };
 
 const deleteBroadcast = (id) => {
@@ -31,8 +40,22 @@ const renderTableBody = (data) => {
           .map(
             (broadcast) => `
             <tr>
-                <td class="flex w-[50vw] p-4 md:w-[60vw] lg:w-[70vw]">
-                  <span class="self-center">${broadcast.name}</span>
+                <td class="min-w-[250px] w-[50vw] p-4">
+                  <span class="self-center">${broadcast?.name || ''}</span>
+                </td>
+                <td class="w-[20vw] p-4">
+                  <span class="self-center capitalize">${
+                    broadcast?.category?.name || ''
+                  }</span>
+                </td>
+                <td class="w-[20vw] p-4">
+                  <span class="self-center">${
+                    broadcast?.airingTime
+                      ? moment(broadcast?.airingTime).format(
+                          'DD/MM/YYYY, hh:mmA'
+                        )
+                      : ''
+                  }</span>
                 </td>
                 <td class="px-4 py-1">
                   <div class="flex w-full justify-center">
@@ -64,13 +87,15 @@ const getBroadcasts = () => {
     });
 };
 
-const addBroadcast = () => {
-  document.querySelector('#add').disabled = true;
+const addBroadcast = (categoryId) => {
   axios
     .post(
       `${backendURL}/broadcast`,
       {
         name: document.querySelector('#broadcast').value,
+        categoryId,
+        airingTime: document.querySelector('#airing-time').value,
+        link: document.querySelector('#link').value,
       },
       {
         headers: {
@@ -110,9 +135,94 @@ const addBroadcast = () => {
     });
 };
 
+const createCategory = (value) => {
+  axios
+    .post(
+      `${backendURL}/category`,
+      {
+        name: value,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    )
+    .then(({ data }) => {
+      addBroadcast(data?.category?._id || '');
+    })
+    .catch((error) => {
+      if (error?.response?.data) {
+        document.querySelector('#errors').innerHTML = `
+          <div
+            class="mt-10 flex w-full flex-col gap-5 rounded-md bg-red-200 p-5 lg:p-10"
+          >
+            <h3 class="text-xl text-red-500">Errors</h3>
+
+            <ul class="ml-5 list-disc">
+              ${Object.values(error.response.data)
+                .map(
+                  (error_1) => `
+                <li>${error_1}</li>
+              `
+                )
+                .join(' ')}
+            </ul>
+          </div>
+        `;
+      }
+    });
+};
+
+const handleSubmit = async () => {
+  document.querySelector('#add').disabled = true;
+
+  if (document.querySelector('#category').value === 'other') {
+    createCategory(document.querySelector('#new-category').value);
+  } else {
+    addBroadcast(document.querySelector('#category').value);
+  }
+};
+
+const getCategories = () => {
+  axios
+    .get(`${backendURL}/category`)
+    .then(({ data }) => {
+      categories = data.categories || [];
+      return (document.querySelector('#category').innerHTML = `
+        ${data.categories
+          .map(
+            (category) => `
+              <option value="${category._id}">${category.name}</option>
+        `
+          )
+          .join('')}
+            <option value="other">Other</option>
+          `);
+    })
+    .catch((error) => {
+      console.log(error);
+      console.log(error?.response?.data);
+    });
+};
+
+const checkCategory = () => {
+  if (document.querySelector('#category').value === 'other') {
+    document
+      .querySelector('#new-category-container')
+      .classList.remove('hidden');
+    document.querySelector('#new-category-container').classList.add('block');
+  } else {
+    document.querySelector('#new-category-container').classList.remove('block');
+    document.querySelector('#new-category-container').classList.add('hidden');
+  }
+};
+
 getBroadcasts();
+getCategories();
 
 window.closeModal = closeModal;
 window.openModal = openModal;
 window.deleteBroadcast = deleteBroadcast;
-window.addBroadcast = addBroadcast;
+window.handleSubmit = handleSubmit;
+window.checkCategory = checkCategory;

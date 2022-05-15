@@ -6,6 +6,7 @@ module.exports = {
     './register/**/*.html',
     './login/**/*.html',
     './admin/**/*.html',
+    './js/screens/**/*.js',
   ],
   theme: {
     extend: {

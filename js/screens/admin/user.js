@@ -40,6 +40,9 @@ const renderTableBody = (data) => {
                 ${user.firstName || ''} ${user.lastName || ''}
               </td>
               <td class="w-[20vw] min-w-[200px] p-4 md:w-[25vw]">
+                ${user?.broadcasts ? user.broadcasts.length : 0}
+              </td>
+              <td class="w-[20vw] min-w-[200px] p-4 md:w-[25vw]">
                 ${
                   user?.lastLogin
                     ? moment(user?.lastLogin).format('DD-MM-YYY, hh:mmA')

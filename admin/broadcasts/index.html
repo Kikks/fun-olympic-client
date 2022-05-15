@@ -124,9 +124,9 @@
         <table class="w-full">
           <thead>
             <tr class="font-semi-bold font-gSemibold mb-4 bg-gray-300 text-sm">
-              <td class="w-[50vw] p-4 font-bold md:w-[60vw] lg:w-[70vw]">
-                Name
-              </td>
+              <td class="w-[50vw] p-4 font-bold">Name</td>
+              <td class="w-[20vw] p-4 font-bold">Category</td>
+              <td class="w-[20vw] p-4 font-bold">Airing Time</td>
               <td class="p-4 font-bold">
                 <div class="flex w-full justify-center">Action</div>
               </td>
@@ -139,7 +139,7 @@
 
     <div id="modal" class="hidden">
       <div
-        class="w-[90vw] max-w-[500px] rounded-md bg-white p-3 shadow-md sm:overflow-hidden sm:rounded-md md:p-5 lg:p-10"
+        class="max-h-[90vh] w-[90vw] max-w-[500px] overflow-y-auto rounded-md bg-white p-3 shadow-md sm:rounded-md md:p-5 lg:p-10"
       >
         <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
           <h3 class="text-xl font-bold md:text-2xl">Add Broadcast</h3>
@@ -149,10 +149,10 @@
           <div class="grid grid-cols-1 gap-6">
             <div class="col-span-1 sm:col-span-1">
               <label
-                for="company-website"
+                for="broadcast"
                 class="block text-sm font-medium text-gray-700"
               >
-                Broadcast
+                Broadcast Name
               </label>
               <div class="mt-1 flex rounded-md shadow-sm">
                 <input
@@ -161,6 +161,80 @@
                   id="broadcast"
                   class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   placeholder="Broadcast Name"
+                />
+              </div>
+            </div>
+
+            <div class="col-span-1 sm:col-span-1">
+              <label
+                for="category"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Category
+              </label>
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <select
+                  name="category"
+                  id="category"
+                  class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  placeholder="Category"
+                  onchange="checkCategory()"
+                ></select>
+              </div>
+            </div>
+
+            <div
+              class="col-span-1 hidden sm:col-span-1"
+              id="new-category-container"
+            >
+              <label
+                for="new-category"
+                class="block text-sm font-medium text-gray-700"
+              >
+                New Category
+              </label>
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <input
+                  type="text"
+                  name="new-category"
+                  id="new-category"
+                  class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  placeholder="Category"
+                />
+              </div>
+            </div>
+
+            <div class="col-span-1 sm:col-span-1">
+              <label
+                for="airing-time"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Airing Time
+              </label>
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <input
+                  type="datetime-local"
+                  name="airing-time"
+                  id="airing-time"
+                  class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                />
+              </div>
+            </div>
+
+            <div class="col-span-1 sm:col-span-1">
+              <label
+                for="category"
+                class="block text-sm font-medium text-gray-700"
+              >
+                Link
+              </label>
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <input
+                  type="url"
+                  name="link"
+                  id="link"
+                  class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  placeholder="www.example.com"
                 />
               </div>
             </div>
@@ -176,7 +250,7 @@
           </button>
 
           <button
-            onclick="addBroadcast()"
+            onclick="handleSubmit()"
             id="add"
             class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300"
           >
