@@ -75,22 +75,14 @@ const renderTableBody = (data) => {
                 ${
                   user?.broadcasts && user.broadcasts.includes(broadcast._id)
                     ? `
-                  <button
-                    type="button"
-                    onclick="removeGame('${broadcast._id}')"
-                    class="flex items-center justify-center rounded-md bg-red-500 p-2 text-xs text-white md:text-sm"
-                  >
-                    Remove Game
-                  </button>
+                    <label class="inline-flex items-center mt-3">
+                      <input type="checkbox" onclick="removeGame('${broadcast._id}')" class="form-checkbox h-5 w-5 text-indigo-600" checked>
+                    </label>
                 `
                     : `
-                  <button
-                    type="button"
-                    onclick="addGame('${broadcast._id}')"
-                    class="flex items-center justify-center rounded-md bg-green-500 p-2 text-xs text-white md:text-sm"
-                  >
-                    Add Game
-                  </button>  
+                    <label class="inline-flex items-center mt-3">
+                      <input type="checkbox" onclick="addGame('${broadcast._id}')" class="form-checkbox h-5 w-5 text-indigo-600">
+                    </label>
                   `
                 }
               </div>
