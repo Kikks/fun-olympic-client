@@ -109,7 +109,7 @@ const getCategories = () => {
     .then(({ data }) => {
       return (document.querySelector('#categories').innerHTML = `
         <div class="flex cursor-pointer items-center gap-2" onclick="filterBroadcasts('')">
-          <img src="./assets/all-sports.png" class="h-7 w-7" />
+          <img src="/assets/all-sports.png" class="h-7 w-7" />
 
           <span class="text-sm">All sports</span>
         </div>
