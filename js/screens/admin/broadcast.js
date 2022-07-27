@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { backendURL } from '../../utils/constants';
+import {
+  backendURL,
+  cloudinaryPreset,
+  cloudinaryURL,
+} from '../../utils/constants';
 import moment from 'moment';
 
 let categories = [];
@@ -135,12 +139,13 @@ const addBroadcast = (categoryId) => {
     });
 };
 
-const createCategory = (value) => {
+const createCategory = (value, image) => {
   axios
     .post(
       `${backendURL}/category`,
       {
         name: value,
+        image,
       },
       {
         headers: {
@@ -153,6 +158,7 @@ const createCategory = (value) => {
     })
     .catch((error) => {
       if (error?.response?.data) {
+        document.querySelector('#add').disabled = false;
         document.querySelector('#errors').innerHTML = `
           <div
             class="mt-10 flex w-full flex-col gap-5 rounded-md bg-red-200 p-5 lg:p-10"
@@ -178,7 +184,35 @@ const handleSubmit = async () => {
   document.querySelector('#add').disabled = true;
 
   if (document.querySelector('#category').value === 'other') {
-    createCategory(document.querySelector('#new-category').value);
+    if (document.querySelector('#new-category-image').files[0]) {
+      const data = new FormData();
+      data.append(
+        'file',
+        document.querySelector('#new-category-image').files[0]
+      );
+      data.append('upload_preset', 'fun-olympics');
+
+      axios
+        .post('https://api.cloudinary.com/v1_1/kikks/image/upload', data)
+        .then((res) => {
+          const secureUrl = res.data?.secure_url;
+          createCategory(
+            document.querySelector('#new-category').value,
+            secureUrl
+          );
+        })
+        .catch((err) => {
+          alert(
+            'An error occured while uploading your image. Try again later.'
+          );
+          document.querySelector('#add').disabled = false;
+          console.error(err);
+        });
+    } else {
+      alert('Please select a category image.');
+      document.querySelector('#add').disabled = false;
+      return;
+    }
   } else {
     addBroadcast(document.querySelector('#category').value);
   }
@@ -190,6 +224,7 @@ const getCategories = () => {
     .then(({ data }) => {
       categories = data.categories || [];
       return (document.querySelector('#category').innerHTML = `
+        <option value="">Select Category</option>
         ${data.categories
           .map(
             (category) => `
@@ -210,11 +245,23 @@ const checkCategory = () => {
   if (document.querySelector('#category').value === 'other') {
     document
       .querySelector('#new-category-container')
-      .classList.remove('hidden');
+      .classList.toggle('hidden');
     document.querySelector('#new-category-container').classList.add('block');
+    document
+      .querySelector('#new-category-image-container')
+      .classList.toggle('hidden');
+    document
+      .querySelector('#new-category-image-container')
+      .classList.add('block');
   } else {
     document.querySelector('#new-category-container').classList.remove('block');
     document.querySelector('#new-category-container').classList.add('hidden');
+    document
+      .querySelector('#new-category-image-container')
+      .classList.remove('block');
+    document
+      .querySelector('#new-category-image-container')
+      .classList.add('hidden');
   }
 };
 

@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FunOlympic Games - Home</title>
   </head>
-  <body>
+  <body class="bg-gray-100">
     <nav class="bg-gray-700">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
@@ -27,7 +27,7 @@
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a
                   href="/"
-                  class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                  class="rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white"
                   aria-current="page"
                   >Home</a
                 >
@@ -39,7 +39,7 @@
           >
             <button
               onclick="logout('user')"
-              class="rounded-md px-3 py-2 text-sm font-medium text-red-500"
+              class="rounded-lg px-3 py-2 text-sm font-medium text-red-500"
               aria-current="page"
             >
               Logout
@@ -49,65 +49,62 @@
       </div>
     </nav>
 
-    <main class="flex flex-col gap-10 p-5 md:p-10 lg:p-16">
-      <div class="flex flex-wrap items-center justify-between gap-5">
-        <h2 class="text-2xl font-bold lg:text-3xl">Broadcasts</h2>
+    <header
+      class="relative grid h-[30vh] max-h-[400px] w-full items-center justify-items-center overflow-hidden bg-red-400 md:h-[50vh]"
+    >
+      <h1
+        class="text-center text-2xl font-bold text-white md:text-3xl lg:text-4xl"
+      >
+        Fun Olympic Games
+      </h1>
 
-        <div class="flex items-center gap-2">
-          <div class="grid">
-            <span class="text-xs font-bold">Category</span>
-            <select
-              name="category"
-              id="categoryFilter"
-              class="min-w-[100px] rounded-md p-2 md:min-w-[150px]"
+      <div
+        class="absolute top-[50%] left-[50%] aspect-video w-full -translate-x-[50%] -translate-y-[50%]"
+      >
+        <video
+          src="./assets/homepage-video.mp4"
+          loop
+          autoplay
+          muted
+          class="h-full w-full"
+        ></video>
+      </div>
+    </header>
+
+    <div
+      class="grid grid-cols-1 gap-5 p-5 md:p-10 lg:grid-cols-[300px_1fr] lg:flex-row lg:gap-10 lg:p-16 lg:px-10"
+    >
+      <aside class="relative h-full">
+        <div
+          class="sticky top-10 left-0 flex flex-col gap-5 rounded-lg bg-white p-5"
+        >
+          <span class="font-bold">Categories</span>
+          <hr />
+
+          <div id="categories" class="flex w-full flex-col gap-5">
+            <div
+              class="flex cursor-pointer items-center gap-2"
+              onclick="filterBroadcasts('')"
             >
-              <option value="">All</option>
-            </select>
-          </div>
+              <img src="./assets/all-sports.png" class="h-7 w-7" />
 
-          <div class="grid">
-            <span class="text-xs font-bold">Interests</span>
-            <select
-              name="viewingList"
-              id="viewingListFilter"
-              class="min-w-[100px] rounded-md p-2 md:min-w-[150px]"
-            >
-              <option value="">All</option>
-              <option value="viewing">Interested</option>
-              <option value="not-viewing">Not Interested</option>
-            </select>
+              <span class="text-sm">All sports</span>
+            </div>
           </div>
-
-          <button
-            id="filter"
-            type="button"
-            onclick="filterBroadcasts()"
-            class="flex items-center justify-center self-end rounded-md bg-indigo-500 py-2 px-7 text-white md:py-3 md:text-sm"
-          >
-            Filter
-          </button>
         </div>
-      </div>
+      </aside>
 
-      <div class="w-full overflow-x-auto">
-        <table class="text-sitrep-black w-full overflow-x-auto">
-          <thead>
-            <tr class="font-semi-bold font-gSemibold mb-4 bg-gray-300 text-sm">
-              <td class="min-w-[250px] p-4 md:w-[25vw]">Name</td>
-              <td class="min-w-[250px] p-4 md:w-[25vw]">Airing Time</td>
-              <td class="min-w-[150px] p-4 md:w-[25vw]">Category</td>
-              <td class="min-w-[150px] p-4 md:w-[25vw]">
-                <div class="flex w-full justify-center">Link</div>
-              </td>
-              <td class="min-w-[150px] p-4 md:w-[25vw]">
-                <div class="flex w-full justify-center">Interests</div>
-              </td>
-            </tr>
-          </thead>
-          <tbody id="tbody" class="font-gRegular text-sm"></tbody>
-        </table>
-      </div>
-    </main>
+      <main class="flex flex-col gap-10">
+        <div class="flex flex-wrap items-center justify-between gap-5">
+          <h2 class="text-2xl font-bold lg:text-3xl">Broadcasts</h2>
+        </div>
+
+        <div
+          class="flex w-full flex-col gap-10 rounded-lg"
+          id="broadcast-list"
+        ></div>
+      </main>
+    </div>
 
     <!-- /** * PurgeCSS: * bg-red-500 * bg-red-200 * bg-black/20 fixed top-0 left-0 flex h-screen w-screen items-center justify-center gap-2 */ -->
 
