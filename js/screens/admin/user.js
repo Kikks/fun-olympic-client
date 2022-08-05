@@ -42,20 +42,17 @@ const renderTableBody = (data) => {
                <td class="w-[20vw] min-w-[200px] p-4 md:w-[25vw]">
                 ${user.email || ''}
               </td>
-              <td class="w-[10vw] min-w-[170px] p-4 md:w-[15vw]">
-                ${user?.broadcasts ? user.broadcasts.length : 0}
-              </td>
               <td class="w-[20vw] min-w-[170px] p-4 md:w-[25vw]">
                 ${
                   user?.lastLogin
-                    ? moment(user?.lastLogin).format('DD-MM-YYY, hh:mmA')
+                    ? moment(user?.lastLogin).format('DD-MM-YYYY, hh:mmA')
                     : '-'
                 }
               </td>
               <td class="w-[20vw] min-w-[170px] p-4 md:w-[25vw]">
                 ${
                   user?.lastLogout
-                    ? moment(user?.lastLogout).format('DD-MM-YYY, hh:mmA')
+                    ? moment(user?.lastLogout).format('DD-MM-YYYY, hh:mmA')
                     : '-'
                 }
               </td>
