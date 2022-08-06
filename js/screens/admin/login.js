@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { backendURL } from '../../utils/constants';
 
-const login = () => {
+document.getElementById('login-form').onsubmit = (event) => {
+  event.preventDefault();
+
   document.querySelector('#submit').disabled = true;
   axios
     .post(`${backendURL}/admin/login`, {
